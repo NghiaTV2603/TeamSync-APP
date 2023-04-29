@@ -1,6 +1,8 @@
 import MainLayout from '../layouts/MainLayout';
 import Home from '../features/home/Home';
 import NotFoundPage from '../layouts/NotFoundPage';
+import SignIn from '../features/authen/SignIn';
+import SignUp from '../features/authen/SignUp';
 
 interface Route {
    path: string;
@@ -21,6 +23,15 @@ const routes: Route[] = [
             path: '/home',
             element: <Home />,
          },
+         { path: '*', element: <NotFoundPage /> },
+      ],
+   },
+   {
+      path: '/auth',
+      element: <MainLayout />,
+      children: [
+         { path: 'login', element: <SignIn /> },
+         { path: 'register', element: <SignUp /> },
          { path: '*', element: <NotFoundPage /> },
       ],
    },
