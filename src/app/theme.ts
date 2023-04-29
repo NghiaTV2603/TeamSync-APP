@@ -201,22 +201,3 @@ type ColorModeContextType = {
 export const ColorModeContext = createContext<ColorModeContextType>({
    toggleColorMode: () => {},
 });
-
-type ThemeType = ReturnType<typeof createTheme>;
-type ColorModeType = {
-   toggleColorMode: () => void;
-};
-export const useMode = (): [ThemeType, ColorModeType] => {
-   const [mode, setMode] = useState('dark');
-
-   const colorMode = useMemo(
-      () => ({
-         toggleColorMode: () =>
-            setMode((prev) => (prev === 'light' ? 'dark' : 'light')),
-      }),
-      []
-   );
-
-   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
-   return [theme, colorMode];
-};

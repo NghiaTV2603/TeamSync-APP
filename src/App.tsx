@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import routes from './app/routes';
-import { ColorModeContext, useMode } from './app/theme';
+import { ColorModeContext } from './app/theme';
+import { useMode } from './hooks/useMode';
 
 function App() {
    const routing = useRoutes(routes);

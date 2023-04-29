@@ -1,7 +1,8 @@
 import React from 'react';
+import PrimarySearchAppBar from './components/AppBar';
 
 function Home(): JSX.Element {
-   return <div>Home</div>;
+   return <PrimarySearchAppBar />;
 }
 
 export default Home;
