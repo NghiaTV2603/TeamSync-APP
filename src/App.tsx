@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import routes from './app/routes';
