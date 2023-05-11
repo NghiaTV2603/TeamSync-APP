@@ -12,8 +12,8 @@ export const axiosRequest = (
    url: string,
    method: AxiosMethod = AxiosMethod.GET,
    token = '',
-   params: any = null,
-   data: any = null
+   params: unknown = null,
+   data: unknown = null
 ) => {
    const axiosConfig: AxiosRequestConfig = {
       url,

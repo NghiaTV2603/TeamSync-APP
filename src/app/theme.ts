@@ -15,6 +15,7 @@ export const tokens = (mode: string): object => ({
               700: '#3d3d3d',
               750: '#2d2d2d',
               800: '#292929',
+              850: '#1D1D1D',
               900: '#141414',
            },
            primary: {
@@ -71,7 +72,9 @@ export const tokens = (mode: string): object => ({
               500: '#666666',
               600: '#858585',
               700: '#a3a3a3',
+              750: '#b5b5b5',
               800: '#c2c2c2',
+              850: '#d1d1d1',
               900: '#e0e0e0',
            },
            primary: {

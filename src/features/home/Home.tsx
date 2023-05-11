@@ -1,8 +1,25 @@
 import React from 'react';
-import PrimarySearchAppBar from './components/AppBar';
+import { Stack, useTheme } from '@mui/material';
+import { tokens } from '../../app/theme';
+import ColumnServer from './components/ColumnServer';
+import ColumnChannel from './components/ColumnChannel';
 
 function Home(): JSX.Element {
-   return <PrimarySearchAppBar />;
+   const theme = useTheme();
+   const colors = tokens(theme.palette.mode);
+   return (
+      <Stack height="100vh" flexDirection="row">
+         <Stack width={70} bgcolor={colors.grey[850]}>
+            <ColumnServer />
+         </Stack>
+         <Stack width={250} bgcolor={colors.grey[800]}>
+            <ColumnChannel />
+         </Stack>
+         <Stack flexGrow={1} bgcolor={colors.grey[750]}>
+            a
+         </Stack>
+      </Stack>
+   );
 }
 
 export default Home;
