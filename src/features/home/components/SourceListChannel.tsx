@@ -7,7 +7,21 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { IconButton, Stack, useTheme } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TagIcon from '@mui/icons-material/Tag';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import { tokens } from '../../../app/theme';
+import { TYPE_TEXT, TYPE_VOCE } from '../../../app/constants';
+
+interface Channel {
+   nameChannel: string;
+   type: string;
+}
+
+const channelList: Array<Channel> = [
+   { nameChannel: 'general', type: TYPE_TEXT },
+   { nameChannel: 'room1', type: TYPE_TEXT },
+   { nameChannel: 'voice1', type: TYPE_VOCE },
+   { nameChannel: 'voice2', type: TYPE_VOCE },
+];
 
 function SourceListChannel() {
    const theme = useTheme();
@@ -39,24 +53,28 @@ function SourceListChannel() {
                   </IconButton>
                </Stack>
             </AccordionSummary>
-            <AccordionDetails sx={{ paddingY: 0, paddingX: 1 }}>
-               <Stack
-                  p={1}
-                  borderRadius={3}
-                  direction="row"
-                  alignItems="center"
-                  spacing={1}
-                  sx={{
-                     '&:hover': {
-                        backgroundColor: colors.grey[600],
-                     },
-                     cursor: 'pointer',
-                  }}
-                  mb={1}
-               >
-                  <TagIcon />
-                  <Typography>General</Typography>
-               </Stack>
+            <AccordionDetails
+               sx={{ paddingY: 0, paddingX: 1, paddingBottom: 1 }}
+            >
+               {channelList.map((e, index) => (
+                  <Stack
+                     key={index}
+                     p={1}
+                     borderRadius={3}
+                     direction="row"
+                     alignItems="center"
+                     spacing={1}
+                     sx={{
+                        '&:hover': {
+                           backgroundColor: colors.grey[600],
+                        },
+                        cursor: 'pointer',
+                     }}
+                  >
+                     {e.type === TYPE_TEXT ? <TagIcon /> : <VolumeUpIcon />}
+                     <Typography>{e.nameChannel}</Typography>
+                  </Stack>
+               ))}
             </AccordionDetails>
          </Accordion>
       </Stack>

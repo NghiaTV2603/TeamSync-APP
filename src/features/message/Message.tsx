@@ -1,6 +1,6 @@
 import React from 'react';
 import { Stack } from '@mui/material';
-import InputChat from '../home/components/InputChat';
+import InputChat from './components/InputChat';
 
 function Message() {
    return (

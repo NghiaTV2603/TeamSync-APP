@@ -5,7 +5,6 @@ import ColumnServer from './components/ColumnServer';
 import ColumnChannel from './components/ColumnChannel';
 import AppBarStyle from './components/AppBar';
 import ContentHome from './components/ContentHome';
-import InputChat from './components/InputChat';
 
 function Home(): JSX.Element {
    const theme = useTheme();
