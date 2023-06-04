@@ -1,155 +1,107 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+import { alpha, styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import { styled } from '@mui/material/styles';
-import { useTheme } from '@mui/material';
-import { tokens, ColorModeContext } from '../../../app/theme';
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
+import { IconButton, Stack, Tooltip, useTheme } from '@mui/material';
+import TagIcon from '@mui/icons-material/Tag';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import VideoCallIcon from '@mui/icons-material/VideoCall';
+import PushPinIcon from '@mui/icons-material/PushPin';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import { tokens } from '../../../app/theme';
 
-const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-   width: 62,
-   height: 34,
-   padding: 7,
-   '& .MuiSwitch-switchBase': {
-      margin: 1,
-      padding: 0,
-      transform: 'translateX(6px)',
-      '&.Mui-checked': {
-         color: '#fff',
-         transform: 'translateX(22px)',
-         '& .MuiSwitch-thumb:before': {
-            backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-               '#fff'
-            )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
-         },
-         '& + .MuiSwitch-track': {
-            opacity: 1,
-            backgroundColor:
-               theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
-         },
-      },
+const Search = styled('div')(({ theme }) => ({
+   position: 'relative',
+   borderRadius: theme.shape.borderRadius,
+   backgroundColor: alpha(theme.palette.common.white, 0.15),
+   '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
    },
-   '& .MuiSwitch-thumb': {
-      backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
-      width: 32,
-      height: 32,
-      '&:before': {
-         content: "''",
-         position: 'absolute',
-         width: '100%',
-         height: '100%',
-         left: 0,
-         top: 0,
-         backgroundRepeat: 'no-repeat',
-         backgroundPosition: 'center',
-         backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-            '#fff'
-         )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
-      },
-   },
-   '& .MuiSwitch-track': {
-      opacity: 1,
-      backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
-      borderRadius: 20 / 2,
+   marginLeft: 0,
+   width: '100%',
+   [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1),
+      width: 'auto',
    },
 }));
-export default function MenuAppBar() {
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+   padding: theme.spacing(0, 2),
+   height: '100%',
+   position: 'absolute',
+   pointerEvents: 'none',
+   display: 'flex',
+   alignItems: 'center',
+   justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+   color: 'inherit',
+   '& .MuiInputBase-input': {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+         width: '12ch',
+         '&:focus': {
+            width: '20ch',
+         },
+         height: '1.5ch',
+      },
+   },
+}));
+
+export default function AppBarStyle() {
    const theme = useTheme();
    const colors = tokens(theme.palette.mode);
-   const colorMode = React.useContext(ColorModeContext);
-   const [auth, setAuth] = React.useState(true);
-   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setAuth(event.target.checked);
-   };
-
-   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(event.currentTarget);
-   };
-
-   const handleClose = () => {
-      setAnchorEl(null);
-   };
-   const [checked, setChecked] = React.useState(true);
-
-   const handleChangeDarkMode = (
-      event: React.ChangeEvent<HTMLInputElement>
-   ) => {
-      setChecked(event.target.checked);
-      colorMode.toggleColorMode();
-   };
-
    return (
-      <AppBar
-         position="static"
-         sx={{ bgcolor: colors.grey[900], color: colors.grey[200] }}
+      <Stack
+         height={50}
+         direction="row"
+         alignItems="center"
+         justifyContent="space-between"
+         borderBottom={1.5}
+         borderColor={colors.grey[850]}
+         px={1}
       >
-         <Toolbar>
-            <IconButton
-               size="large"
-               edge="start"
-               color="inherit"
-               aria-label="menu"
-               sx={{ mr: 2 }}
-            >
-               <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-               Photos
-            </Typography>
-            <FormControlLabel
-               control={
-                  <MaterialUISwitch
-                     sx={{ m: 1 }}
-                     checked={checked}
-                     onChange={handleChangeDarkMode}
-                  />
-               }
-               label="MUI switch"
-            />
-            {auth && (
-               <div>
-                  <IconButton
-                     size="large"
-                     aria-label="account of current user"
-                     aria-controls="menu-appbar"
-                     aria-haspopup="true"
-                     onClick={handleMenu}
-                     color="inherit"
-                  >
-                     <AccountCircle />
-                  </IconButton>
-                  <Menu
-                     id="menu-appbar"
-                     anchorEl={anchorEl}
-                     anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                     }}
-                     keepMounted
-                     transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                     }}
-                     open={Boolean(anchorEl)}
-                     onClose={handleClose}
-                  >
-                     <MenuItem onClick={handleClose}>Profile</MenuItem>
-                     <MenuItem onClick={handleClose}>My account</MenuItem>
-                  </Menu>
-               </div>
-            )}
-         </Toolbar>
-      </AppBar>
+         <Stack direction="row" spacing={0.5} alignItems="center">
+            <TagIcon />
+            <Typography fontSize={16}>Name User</Typography>
+         </Stack>
+         <Stack direction="row" spacing={1} alignItems="center">
+            <Tooltip title="start voice call" arrow>
+               <IconButton size="small">
+                  <WifiCalling3Icon />
+               </IconButton>
+            </Tooltip>
+            <Tooltip title="start video call" arrow>
+               <IconButton size="small">
+                  <VideoCallIcon fontSize="large" />
+               </IconButton>
+            </Tooltip>
+            <Tooltip title="start voice call" arrow>
+               <IconButton size="small">
+                  <PushPinIcon />
+               </IconButton>
+            </Tooltip>
+            <Tooltip title="start voice call" arrow>
+               <IconButton size="small">
+                  <PersonAddIcon fontSize="medium" />
+               </IconButton>
+            </Tooltip>
+            <Search>
+               <SearchIconWrapper>
+                  <SearchIcon />
+               </SearchIconWrapper>
+               <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ 'aria-label': 'search' }}
+               />
+            </Search>
+         </Stack>
+      </Stack>
    );
 }

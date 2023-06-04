@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Stack, Avatar, Divider, useTheme, Tooltip } from '@mui/material';
+import { Avatar, Divider, Stack, Tooltip, useTheme } from '@mui/material';
 import FitbitIcon from '@mui/icons-material/Fitbit';
 import { tokens } from '../../../app/theme';
 

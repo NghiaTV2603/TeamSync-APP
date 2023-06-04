@@ -13,8 +13,12 @@ function SourceListChannel() {
    const theme = useTheme();
    const colors = tokens(theme.palette.mode);
    return (
-      <Stack pt={2}>
-         <Accordion sx={{ backgroundColor: colors.grey[800] }}>
+      <Stack>
+         <Accordion
+            defaultExpanded
+            disableGutters
+            sx={{ backgroundColor: colors.grey[800] }}
+         >
             <AccordionSummary
                expandIcon={<ExpandMoreIcon />}
                aria-controls="panel1a-content"
@@ -31,7 +35,7 @@ function SourceListChannel() {
                      CHANNEL TEXT
                   </Typography>
                   <IconButton size="small">
-                     <SettingsIcon />
+                     <SettingsIcon fontSize="small" />
                   </IconButton>
                </Stack>
             </AccordionSummary>
@@ -48,24 +52,7 @@ function SourceListChannel() {
                      },
                      cursor: 'pointer',
                   }}
-               >
-                  <TagIcon />
-                  <Typography>General</Typography>
-               </Stack>
-            </AccordionDetails>
-            <AccordionDetails sx={{ paddingY: 0, paddingX: 1 }}>
-               <Stack
-                  p={1}
-                  borderRadius={3}
-                  direction="row"
-                  alignItems="center"
-                  spacing={1}
-                  sx={{
-                     '&:hover': {
-                        backgroundColor: colors.grey[600],
-                     },
-                     cursor: 'pointer',
-                  }}
+                  mb={1}
                >
                   <TagIcon />
                   <Typography>General</Typography>

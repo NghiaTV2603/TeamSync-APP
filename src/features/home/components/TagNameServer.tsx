@@ -36,6 +36,8 @@ function TagNameServer() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick}
+            borderBottom={1.5}
+            borderColor={colors.grey[900]}
          >
             <Typography fontSize={16} fontWeight={600}>
                Name Server

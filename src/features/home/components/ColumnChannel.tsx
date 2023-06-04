@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Stack, useTheme } from '@mui/material';
+import { Stack, useTheme } from '@mui/material';
 import { tokens } from '../../../app/theme';
 import TagNameServer from './TagNameServer';
 import SourceListChannel from './SourceListChannel';
@@ -11,7 +11,6 @@ function ColumnChannel() {
    return (
       <Stack direction="column" height="100vh">
          <TagNameServer />
-         <Divider sx={{ width: '100%' }} />
          <Stack flexGrow={1}>
             <SourceListChannel />
          </Stack>

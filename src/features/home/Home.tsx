@@ -3,6 +3,9 @@ import { Stack, useTheme } from '@mui/material';
 import { tokens } from '../../app/theme';
 import ColumnServer from './components/ColumnServer';
 import ColumnChannel from './components/ColumnChannel';
+import AppBarStyle from './components/AppBar';
+import ContentHome from './components/ContentHome';
+import InputChat from './components/InputChat';
 
 function Home(): JSX.Element {
    const theme = useTheme();
@@ -15,8 +18,9 @@ function Home(): JSX.Element {
          <Stack width={250} bgcolor={colors.grey[800]}>
             <ColumnChannel />
          </Stack>
-         <Stack flexGrow={1} bgcolor={colors.grey[750]}>
-            a
+         <Stack flexGrow={1} direction="column" bgcolor={colors.grey[750]}>
+            <AppBarStyle />
+            <ContentHome />
          </Stack>
       </Stack>
    );
