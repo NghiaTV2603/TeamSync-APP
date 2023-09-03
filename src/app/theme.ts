@@ -1,8 +1,13 @@
-import { createContext, useState, useMemo } from 'react';
-import { createTheme } from '@mui/material/styles';
+import { createContext } from 'react';
+
+export interface ColorPalette {
+   [key: string]: {
+      [key: number]: string;
+   };
+}
 
 // color design tokens export
-export const tokens = (mode: string): object => ({
+export const tokens = (mode: string): ColorPalette => ({
    ...(mode === 'dark'
       ? {
            grey: {

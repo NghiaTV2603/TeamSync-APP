@@ -22,7 +22,9 @@ const authSlice = createSlice({
    initialState,
    reducers: {
       logout: (state: AuthInterface) => {
+         // eslint-disable-next-line no-param-reassign
          state.isLogin = false;
+         // eslint-disable-next-line no-param-reassign
          state.user = {};
       },
    },

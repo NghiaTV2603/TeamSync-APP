@@ -1,11 +1,7 @@
-import * as React from 'react';
-import { Avatar, Divider, Stack, Tooltip, useTheme } from '@mui/material';
+import { Avatar, Divider, Stack, Tooltip } from '@mui/material';
 import FitbitIcon from '@mui/icons-material/Fitbit';
-import { tokens } from '../../../app/theme';
 
 function ColumnServer(): JSX.Element {
-   const theme = useTheme();
-   const colors = tokens(theme.palette.mode);
    return (
       <Stack py={1} spacing={1} direction="column" alignItems="center">
          <Tooltip title="Direct Messages" arrow placement="right">

@@ -1,12 +1,12 @@
-import React from 'react';
-import { IconButton, Stack } from '@mui/material';
+import { IconButton, Stack, useTheme } from '@mui/material';
 import InputBase from '@mui/material/InputBase';
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import CodeIcon from '@mui/icons-material/Code';
-import useColors from '../../../hooks/useColors';
+import { ColorPalette, tokens } from '../../../app/theme';
 
 function InputChat() {
-   const colors = useColors();
+   const theme = useTheme();
+   const colors: ColorPalette = tokens(theme.palette.mode);
    return (
       <Stack
          mx={2}
@@ -24,7 +24,7 @@ function InputChat() {
             placeholder="Message…"
             inputProps={{ 'aria-label': 'search' }}
          />
-         <Stack direction="row" colors={colors.grey[800]} alignItems="center">
+         <Stack direction="row" alignItems="center">
             <IconButton>
                <CodeIcon />
             </IconButton>

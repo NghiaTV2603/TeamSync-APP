@@ -23,7 +23,7 @@ export const axiosRequest = (
    };
 
    if (token) {
-      axiosConfig.headers.Authorization = `Bearer ${token}`;
+      // axiosConfig.headers.Authorization = `Bearer ${token}`;
    }
 
    axiosConfig.data = data;

@@ -10,9 +10,8 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Stack, useTheme } from '@mui/material';
-import { tokens } from '../../app/theme';
+import { useTheme } from '@mui/material';
+import { tokens, ColorPalette } from '../../app/theme';
 
 function Copyright() {
    return (
@@ -26,12 +25,10 @@ function Copyright() {
    );
 }
 
-const theme = createTheme();
-
 export default function SignIn() {
    // eslint-disable-next-line @typescript-eslint/no-shadow
    const theme = useTheme();
-   const colors = tokens(theme.palette.mode);
+   const colors: ColorPalette = tokens(theme.palette.mode);
    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
@@ -99,6 +96,7 @@ export default function SignIn() {
                </Button>
                <Grid container>
                   <Grid item xs>
+                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                      <Link
                         href="#"
                         variant="body2"
@@ -121,7 +119,7 @@ export default function SignIn() {
                </Grid>
             </Box>
          </Box>
-         <Copyright sx={{ mt: 8, mb: 4 }} />
+         <Copyright />
       </Container>
    );
 }

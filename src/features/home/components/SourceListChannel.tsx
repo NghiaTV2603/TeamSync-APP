@@ -1,4 +1,3 @@
-import React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -14,13 +13,14 @@ import { TYPE_TEXT, TYPE_VOCE } from '../../../app/constants';
 interface Channel {
    nameChannel: string;
    type: string;
+   id: number;
 }
 
 const channelList: Array<Channel> = [
-   { nameChannel: 'general', type: TYPE_TEXT },
-   { nameChannel: 'room1', type: TYPE_TEXT },
-   { nameChannel: 'voice1', type: TYPE_VOCE },
-   { nameChannel: 'voice2', type: TYPE_VOCE },
+   { nameChannel: 'general', type: TYPE_TEXT, id: 1 },
+   { nameChannel: 'room1', type: TYPE_TEXT, id: 2 },
+   { nameChannel: 'voice1', type: TYPE_VOCE, id: 2 },
+   { nameChannel: 'voice2', type: TYPE_VOCE, id: 3 },
 ];
 
 function SourceListChannel() {
@@ -56,9 +56,9 @@ function SourceListChannel() {
             <AccordionDetails
                sx={{ paddingY: 0, paddingX: 1, paddingBottom: 1 }}
             >
-               {channelList.map((e, index) => (
+               {channelList.map((e) => (
                   <Stack
-                     key={index}
+                     key={e.id}
                      p={1}
                      borderRadius={3}
                      direction="row"
@@ -80,4 +80,5 @@ function SourceListChannel() {
       </Stack>
    );
 }
+
 export default SourceListChannel;
