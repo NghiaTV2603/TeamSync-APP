@@ -5,11 +5,16 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Menu from '@mui/material/Menu';
 import Fade from '@mui/material/Fade';
 import MenuItem from '@mui/material/MenuItem';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { tokens } from '../../../app/theme';
+import useCreateChannelModal from '../../../hooks/modal/useCreateChannelModal';
 
 function TagNameServer() {
    const theme = useTheme();
    const colors = tokens(theme.palette.mode);
+   const { handleOpen, modal } = useCreateChannelModal();
    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
    const open = Boolean(anchorEl);
    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -61,12 +66,43 @@ function TagNameServer() {
                },
             }}
          >
-            <MenuItem sx={{ width: 210 }} onClick={handleClose}>
-               Profile
+            <MenuItem onClick={handleClose}>
+               <Stack
+                  sx={{ width: 190 }}
+                  direction="row"
+                  justifyContent="space-between"
+               >
+                  <Typography>Invite people</Typography>
+                  <PersonAddIcon />
+               </Stack>
             </MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem onClick={handleClose}>
+               <Stack
+                  sx={{ width: 190 }}
+                  direction="row"
+                  justifyContent="space-between"
+               >
+                  <Typography>Setting server</Typography>
+                  <SettingsIcon />
+               </Stack>
+            </MenuItem>
+            <MenuItem
+               onClick={() => {
+                  handleClose();
+                  handleOpen();
+               }}
+            >
+               <Stack
+                  sx={{ width: 190 }}
+                  direction="row"
+                  justifyContent="space-between"
+               >
+                  <Typography>Create Channel</Typography>
+                  <AddCircleIcon />
+               </Stack>
+            </MenuItem>
          </Menu>
+         {modal}
       </>
    );
 }
