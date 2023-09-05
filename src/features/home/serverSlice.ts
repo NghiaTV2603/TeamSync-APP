@@ -18,7 +18,11 @@ const initialState: Server[] = [
 const serverSlice = createSlice({
    name: 'server',
    initialState,
-   reducers: {},
+   reducers: {
+      create: (state, action) => {
+         state.push(action.payload);
+      },
+   },
 });
 
 export default serverSlice;
